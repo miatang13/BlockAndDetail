@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Block and Detail: Scaffolding Sketch-to-Image Generation.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Block and Detail: Scaffolding Sketch-to-Image Generation</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Block and Detail: <br />Scaffolding Sketch-to-Image
+              Generation</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://vsanimator.github.io/" target="_blank">Vishnu Sarukkai </a>,</span>
+              <span class="author-block">
+                <a href="https://sylviayuan-sy.github.io/" target="_blank">Lu Yuan*</a>,</span>
+              <span class="author-block">
+                <a href="https://www.mia-tang.com/" target="_blank">Mia Tang*</a>,</span>
+              <span class="author-block">
+                <a href="https://graphics.stanford.edu/~maneesh/" target="_blank">Maneesh Agrawala </a>,</span>
+              <span class="author-block">
+                <a href="https://graphics.stanford.edu/~kayvonf/" target="_blank"> Kayvon Fatahalian</a></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Stanford University
+            </div>
+            <div class="is-size-6 note">
+              <span>*Denotes equal contribution
+            </div>
+            <div class="is-size-3 venue ">
+              <span class="is-bold">UIST 2024
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2402.18116" class="external-link button is-normal is-rounded is-dark" target="_blank">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2402.18116" class="external-link button is-normal is-rounded is-dark" target="_blank">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Video Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video (Coming Soon)</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/BlockDetail/Block-and-Detail" class="external-link button is-normal is-rounded is-dark" target="_blank">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <img src="./static/images/banner_robin.png" alt="Banner Image" />
+        <h2 class="subtitle has-text-centered mt-4">
+          Our sketch-to-image generation tool supports the iterative refinement process artists use to create images. Users can sketch <span class="dnerf text-green-600 ">blocking strokes (green)</span> to specify coarse spatial composition and <span class="dnerf  text-black">detail strokes (black)</span> to specify more precise silhouettes and shapes.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="section is-light">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              We introduce a novel sketch-to-image tool that aligns with the
+              iterative refinement process of artists. Our tool lets users sketch
+              blocking strokes to coarsely represent the placement and form of
+              objects and detail strokes to refine their shape and silhouettes.
+              We develop a two-pass algorithm for generating high-fidelity images
+              from such sketches at any point in the iterative process. In the first
+              pass we use a ControlNet to generate an image that strictly follows
+              all the strokes (blocking and detail) and in the second pass we add
+              variation by renoising regions surrounding blocking strokes.
+            </p>
+            <p>
+              We also present a dataset generation scheme that, when used to train a
+              ControlNet architecture, allows regions that do not contain strokes
+              to be interpreted as not-yet-specified regions rather than empty
+              space. We show that this partial-sketch-aware ControlNet can generate
+              coherent elements from partial sketches that only contain
+              a small number of strokes. The high-fidelity images produced by
+              our approach serve as scaffolds that can help the user adjust the
+              shape and proportions of objects or add additional elements to the
+              composition. We demonstrate the effectiveness of our approach
+              with a variety of examples and evaluative comparisons. Quantitatively,
+              evaluative user feedback indicates that novice viewers prefer
+              the quality of images from our algorithm over a baseline Scribble
+              ControlNet for 84% of the pairs and found our images had less
+              distortion in 81% of the pairs.
+            </p>
+          </div>
+        </div>
+      </div>
+  </section>
+  <!--/ Abstract. -->
+
+  <!-- Paper video. -->
+  <!-- <section class="section">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  <!--/ Paper video. -->
+
+  <!-- methods -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Motivation for Blocking Strokes</h2>
+          <div id="results-carousel" class="carousel results-carousel" data-slides-to-show="1">
+            <div class="carousel-slide">
+              <img src="static/images/blockingfig_1.png" alt="blocking cat lily">
+            </div>
+            <div class="carousel-slide">
+              <img src="static/images/blockingfig_2.png" alt="blocking scooter cake">
+            </div>
+            <div class="carousel-slide">
+              <img src="static/images/blockingfig_3.png" alt="blocking bottle pear">
+            </div>
+            <div class="carousel-slide">
+              <img src="static/images/blockingfig_4.png" alt="blocking woman bear">
+            </div>
+            <div class="carousel-slide">
+              <img src="static/images/blockingfig_5.png" alt="robin cat">
+            </div>
+          </div>
+          <div class="content has-text-justified mt-4">
+            <p> In early stages of sketching, artists often specify object forms via rough blocking strokes. Standard ControlNet adheres too strictly to these strokes, creating images with object forms that are unrealistic or poorly proportioned (misshaped cat, overly circular flower, poorly proportioned scooter, simplified cupcake silhouette). Instead, our algorithm treats blocking strokes as rough guidelines for object form, enabling artists to generate visual inspiration that is both realistic and accurately matches their intent. </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- methods -->
+
+  <!-- Walkthroughs -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Example Walkthroughs</h2>
+          <div id="results-carousel" class="carousel results-carousel" data-slides-to-show="1">
+            <div class="carousel-slide">
+              <img src="static/images/results_ManeeshRobin.png" alt="Robin">
+            </div>
+            <div class="carousel-slide">
+              <img src="static/images/results_lamp_color_con_2.png" alt="Lamp">
+            </div>
+            <div class="carousel-slide">
+              <img src="static/images/results_plant_new.png" alt="Daisy">
+            </div>
+            <div class="carousel-slide">
+              <img src="static/images/results_rose_color_con_2.png" alt="Daisy">
+            </div>
+            <div class="carousel-slide">
+              <img src="static/images/results_house.png" alt="House">
+            </div>
+            <div class="carousel-slide">
+              <img src="static/images/results_scooter.png" alt="Scooter">
+            </div>
+          </div>
+          <div class="content has-text-justified mt-4">
+            <p>
+              We present walkthroughs of our system being used to generate a variety of images. Each figure shows a sequence of sketching steps and the generated image samples for each sketch. The supplemental videos also demonstrate how the generated samples scaffold the process. The walkthroughs illustrate the benefits of blocking, partial-sketch completion, and detailed sketch control for generating images that scaffold the iterative sketch-to-image process. Please refer to the paper for walkthrough details.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- methods -->
+  <section class="section is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">How does it work?</h2>
+          <img src="./static/images/method_fig.png" alt="Methods Figure" />
+          <div class="content has-text-justified mt-4">
+            <p> Our algorithm takes as input a text prompt (“a baseball photorealistic”), and a sketch consisting of blocking strokes (green) and detail strokes (black). In a first pass it feeds all strokes to a partial-sketch-aware ControlNet to produce an image, denoted as 𝐼<sub>𝑡𝑐 </sub> , that tightly adheres to all strokes. Here the contour of the baseball in 𝐼<sub>𝑡𝑐 </sub>is misshapen because the input blocking strokes (green) are not quite circular. To generate variation in areas surrounding the blocking strokes, our algorithm applies a second diffusion pass we call Blended Renoising. Based on a renoising mask formed by dilating the input strokes, blended renoising generates variation in the area surrounding blocking strokes while preserving areas near detail strokes. The renoised output image corrects the baseball's contour, while the location of the stitching closely follows the user's detailed strokes. </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- methods -->
+
+
+  <!-- dilation -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">How to loosen spatial control</h2>
+          <div class="flex justify-center">
+            <img src="./static/images/renoise_cnet_dilation.png" alt="Renoise Strength Figure" width="700px" />
+          </div>
+
+          <div class="content has-text-justified mt-4">
+            <p> Dilation radius is more interpretable as a parameter for loosening spatial control than ControlNet strength. As the dilation radius of blocking strokes 𝜎<sub>𝑏</sub> increases, our algorithm maintains the rough shape of the vase while gradually allowing greater variation in the exact shape of its contour. In contrast, varying the ControlNet guidance strength without dilating the stokes leads to sudden unpredictable behavior as the strength is decreased. We lose adherence to the strokes as the hands appear in the third image and the vase completely loses its form by the fourth image.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- dilation -->
+
+
+  <!-- partial control controlnet -->
+  <section class="section is-light">
+    <div class="container is-max-desktop">
+      <div>
+
+        <!--images-->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-max-desktop">
+            <h2 class="title is-3">Synthetic Data for Partial-Sketch-Aware ControlNet</h2>
+            <div class="columns place-items-center">
+              <div class="column">
+                <img src="./static/images/synthetic_data_gen.png" alt="Synthetic Data Generation Figure" />
+                <caption>Synthetic data generation</caption>
+              </div>
+              <div class="column">
+                <img src="./static/images/partial_ctnet_results.png" alt="Partial ControlNet Figure" />
+                <caption>Our Partial-Sketch-Aware ControlNet vs Scribble ControlNet</caption>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!--images-->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <div class="content has-text-justified mt-4 ">
+              <p> Dilation radius is more interpretable as a parameter for loosening spatial control than ControlNet strength. As the dilation radius of blocking strokes 𝜎<sub>𝑏</sub> increases, our algorithm maintains the rough shape of the vase while gradually allowing greater variation in the exact shape of its contour. In contrast, varying the ControlNet guidance strength without dilating the stokes leads to sudden unpredictable behavior as the strength is decreased. We lose adherence to the strokes as the hands appear in the third image and the vase completely loses its form by the fourth image.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- partial control controlnet -->
+
+
+  <!-- Acknowledgement -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Acknowledgements</h2>
+          <div class="content has-text-justified">
+            <p> Support for this project was provided by Meta, Activision, Andreessen Horowitz and the Brown Institute for Media Innovation. Thank you to Joon Park, Purvi Goel, James Hong, Sarah Jobalia, Yingke Wang and Sofia Wyetzner for their feedback on our tool.</p>
+          </div>
+        </div>
+      </div>
+  </section>
+  <!-- Acknowledgement -->
+
+
+  <section class="section" id="BibTeX">
+    <div class="container is-four-fifths content">
+      <div class="text-center">
+        <h2 class="title">BibTeX</h2>
+      </div>
+      <pre><code>
+        @inproceedings{10.1145/3654777.3676444,
+          author = {Sarukkai, Vishnu and Yuan, Lu and Tang, Mia and Agrawala, Maneesh and Fatahalian, Kayvon},
+          title = {Block and Detail: Scaffolding Sketch-to-Image Generation},
+          year = {2024},
+          isbn = {9798400706288},
+          publisher = {Association for Computing Machinery},
+          address = {New York, NY, USA},
+          url = {https://doi.org/10.1145/3654777.3676444},
+          doi = {10.1145/3654777.3676444},
+          articleno = {33},
+          numpages = {13},
+          location = {Pittsburgh, PA, USA},
+          series = {UIST '24}
+          }
+  </code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              Website source code based on the <a href="https://nerfies.github.io/">Nerfies</a> project page. If you want to reuse their <a href="https://github.com/nerfies/nerfies.github.io">source code</a>, please credit them appropriately.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
