@@ -338,7 +338,26 @@
         <div class="columns is-centered has-text-centered">
           <div class="column is-four-fifths">
             <div class="content has-text-justified mt-4 ">
-              <p> Dilation radius is more interpretable as a parameter for loosening spatial control than ControlNet strength. As the dilation radius of blocking strokes 𝜎<sub>𝑏</sub> increases, our algorithm maintains the rough shape of the vase while gradually allowing greater variation in the exact shape of its contour. In contrast, varying the ControlNet guidance strength without dilating the stokes leads to sudden unpredictable behavior as the strength is decreased. We lose adherence to the strokes as the hands appear in the third image and the vase completely loses its form by the fourth image.</p>
+              <p> Synthetic data generation: ordering strokes by their
+                distance from the boundary of the foreground object"s mask
+                (gray tint) enables the preferential deletion of strokes furthest
+                from the object boundary. For the car, the first 20% of
+                the lines capture a portion of the silhouette. This enables
+                us to train a partial-sketch ControlNet that auto-completes
+                object forms and also attempts to fill in details.</p>
+
+              <p>
+                Our Partial-Sketch-Aware ControlNet vs Scribble
+                ControlNet. Our Partial-Sketch-Aware ControlNet generates
+                additional elements beyond the drawn strokes: generating
+                multiple shoes instead of a single shoe for "shoes",
+                generating a second mug for "two mugs", and generating a
+                house with interesting foreground and background details
+                from a simple outline for "house". The standard Scribble ControlNet
+                fails to generate additional elements and produces
+                minimal details in both the foreground and background of
+                the house.
+              </p>
             </div>
           </div>
         </div>
